@@ -1,0 +1,32 @@
+A51 MACRO ASSEMBLER  MAIN                                                                 07/28/2022 14:33:50 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\main.obj
+ASSEMBLER INVOKED BY: D:\keil32\C51\BIN\A51.EXE main.asm SET(SMALL) DEBUG PRINT(.\Listings\main.lst) OBJECT(.\Objects\ma
+                      in.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0030                   1     ORG 30h;起始地址
+                       2     
+0030                   3     START: 
+0030 D280              4         SETB P0.0
+0032 80FE              5         JMP $
+                       6     END
+A51 MACRO ASSEMBLER  MAIN                                                                 07/28/2022 14:33:50 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+P0 . . . . . . . .  D ADDR   0080H   A   
+START. . . . . . .  C ADDR   0030H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

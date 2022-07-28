@@ -1,0 +1,6 @@
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=14
+".\Objects\LED" - 0 Error(s), 0 Warning(s).
+Build Time Elapsed:  00:00:01
