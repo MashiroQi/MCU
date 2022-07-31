@@ -1,0 +1,139 @@
+A51 MACRO ASSEMBLER  MAIN                                                                 07/31/2022 21:21:45 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\main.obj
+ASSEMBLER INVOKED BY: D:\keilc51\C51\BIN\A51.EXE Main\main.asm INCDIR(.\Main;.\Lib) SET(SMALL) DEBUG PRINT(.\Listings\ma
+                      in.lst) OBJECT(.\Objects\main.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+  REG                  1     REC EQU R1
+  REG                  2     ROW EQU R2 
+  REG                  3     COL EQU R3
+----                   4     CSEG AT 0000H
+0000                   5     ORG 0000H
+0000 807E              6     JMP START  
+                       7     
+0023                   8     ORG 0023H  ;串口中断函数
+                       9     
+0023 A999             10             MOV REC,SBUF
+0025 C298             11             CLR RI
+0027 EA               12             MOV A,ROW
+0028 6440             13             XRL A,#64
+002A 600B             14             JZ NEXTPICTURE
+002C                  15             BACK1:
+002C EB               16             MOV A,COL
+002D 6410             17             XRL A,#16
+002F 600F             18             JZ NEXTROW 
+0031                  19             BACK2:
+0031 0B               20             INC COL
+0032 E9               21             MOV A,REC
+0033 120000   F       22             CALL WDAT
+                      23             ;测试用
+                      24             
+                      25     
+                      26     
+                      27     
+                      28     
+0036 32               29             RETI
+                      30     
+0037                  31     NEXTPICTURE:
+0037 7A00             32             MOV ROW,#00H
+0039 7436             33             MOV A,#36H
+003B 120000   F       34             CALL WCMD
+003E 80EC             35             JMP BACK1
+                      36     
+0040                  37     NEXTROW:
+0040 7B00             38             MOV COL,#00H
+0042 0A               39             INC ROW
+0043 EA               40             MOV A,ROW
+0044 75F020           41             MOV B,#32
+0047 84               42             DIV AB
+0048 6013             43             JZ AREA2
+004A 8002             44             JMP AREA1
+004C                  45             BACK3:
+004C 80E3             46             JMP BACK2
+                      47     
+004E                  48     AREA1:
+004E EA               49             MOV A,ROW
+004F 2480             50             ADD A,#80H
+0051 9420             51             SUBB A,#32
+0053 120000   F       52             CALL WCMD
+0056 7488             53             MOV A,#88H
+0058 120000   F       54             CALL WCMD
+005B 80EF             55             JMP BACK3
+005D                  56     AREA2:
+005D EA               57             MOV A,ROW
+A51 MACRO ASSEMBLER  MAIN                                                                 07/31/2022 21:21:45 PAGE     2
+
+005E 2480             58             ADD A,#80H
+0060 120000   F       59             CALL WCMD
+0063 7480             60             MOV A,#80H
+0065 120000   F       61             CALL WCMD
+0068 80E2             62             JMP BACK3
+                      63             
+0080                  64     ORG 0080H
+                      65     
+                      66     EXTRN CODE (INIT,WDAT,WCMD)
+                      67     EXTRN CODE (UART_INIT)
+                      68     EXTRN CODE (DELAY)
+                      69     
+0080                  70     START:
+                      71     
+0080 7900             72             MOV REC,#0
+0082 7A00             73             MOV ROW,#0
+0084 7B00             74             MOV COL,#0
+                      75             
+0086 120000   F       76             CALL INIT
+0089 120000   F       77             CALL UART_INIT
+                      78             
+008C 7480             79             MOV A,#80H
+008E 120000   F       80             CALL WCMD
+0091 7432             81             MOV A,#50
+0093 120000   F       82             CALL DELAY
+0096 7480             83             MOV A,#80H
+0098 120000   F       84             CALL WCMD
+009B 7432             85             MOV A,#50
+009D 120000   F       86             CALL DELAY
+                      87             
+00A0                  88     LOOP:
+00A0 00               89             NOP
+00A1 80FD             90             JMP LOOP
+                      91                     
+                      92                     
+                      93     END
+A51 MACRO ASSEMBLER  MAIN                                                                 07/31/2022 21:21:45 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AREA1. . . . . . .  C ADDR   004EH   A   
+AREA2. . . . . . .  C ADDR   005DH   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+BACK1. . . . . . .  C ADDR   002CH   A   
+BACK2. . . . . . .  C ADDR   0031H   A   
+BACK3. . . . . . .  C ADDR   004CH   A   
+COL. . . . . . . .    REG    R3          
+DELAY. . . . . . .  C ADDR   -----       EXT
+INIT . . . . . . .  C ADDR   -----       EXT
+LOOP . . . . . . .  C ADDR   00A0H   A   
+NEXTPICTURE. . . .  C ADDR   0037H   A   
+NEXTROW. . . . . .  C ADDR   0040H   A   
+REC. . . . . . . .    REG    R1          
+RI . . . . . . . .  B ADDR   0098H.0 A   
+ROW. . . . . . . .    REG    R2          
+SBUF . . . . . . .  D ADDR   0099H   A   
+START. . . . . . .  C ADDR   0080H   A   
+UART_INIT. . . . .  C ADDR   -----       EXT
+WCMD . . . . . . .  C ADDR   -----       EXT
+WDAT . . . . . . .  C ADDR   -----       EXT
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

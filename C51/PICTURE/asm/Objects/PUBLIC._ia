@@ -1,0 +1,1 @@
+"Lib\PUBLIC.asm" INCDIR(.\Main;.\Lib) SET (SMALL) DEBUG PRINT(.\Listings\PUBLIC.lst) OBJECT(.\Objects\PUBLIC.obj) EP

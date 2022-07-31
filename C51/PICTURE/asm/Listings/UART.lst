@@ -1,0 +1,123 @@
+A51 MACRO ASSEMBLER  UART                                                                 07/31/2022 21:21:45 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+NO OBJECT MODULE REQUESTED
+ASSEMBLER INVOKED BY: D:\keilc51\C51\BIN\A51.EXE Lib\UART.asm INCDIR(.\Main;.\Lib) SET(SMALL) DEBUG PRINT(.\Listings\UAR
+                      T.lst) OBJECT(.\Objects\UART.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     UART  SEGMENT  CODE
+----                   2     RSEG  UART
+                       3     
+                       4     PUBLIC UART_INIT
+                       5     
+0000                   6     UART_INIT:
+0000                   7             ORL TMOD,#20H £»ÉèÖÃ¼ÆÊÆ÷¹¤×÷·½Ê½2
+*** _______________________________________________^
+*** ________________________________________________^
+*** _________________________________________________^
+*** __________________________________________________^
+*** ___________________________________________________^
+*** ERROR #A9 IN 7 (Lib\UART.asm, LINE 7): SYNTAX ERROR
+*** ERROR #A9 IN 7 (Lib\UART.asm, LINE 7): SYNTAX ERROR
+*** ERROR #A3 IN 7 (Lib\UART.asm, LINE 7): ILLEGAL CHARACTER
+*** ERROR #A3 IN 7 (Lib\UART.asm, LINE 7): ILLEGAL CHARACTER
+*** ERROR #A3 IN 7 (Lib\UART.asm, LINE 7): ILLEGAL CHARACTER
+*** MORE ERRORS DETECTED, NOT REPORTED0000                   8             MOV SCON,#50H £»ÉèÖÃÎª¹¤×÷·½Ê½1
+*** _______________________________________________^
+*** ________________________________________________^
+*** _________________________________________________^
+*** __________________________________________________^
+*** ___________________________________________________^
+*** ERROR #A9 IN 8 (Lib\UART.asm, LINE 8): SYNTAX ERROR
+*** ERROR #A9 IN 8 (Lib\UART.asm, LINE 8): SYNTAX ERROR
+*** ERROR #A3 IN 8 (Lib\UART.asm, LINE 8): ILLEGAL CHARACTER
+*** ERROR #A3 IN 8 (Lib\UART.asm, LINE 8): ILLEGAL CHARACTER
+*** ERROR #A3 IN 8 (Lib\UART.asm, LINE 8): ILLEGAL CHARACTER
+*** MORE ERRORS DETECTED, NOT REPORTED0000                   9             MOV PCON,#80H £»²¨ÌØÂÊ¼Ó±¶
+*** _______________________________________________^
+*** ________________________________________________^
+*** _________________________________________________^
+*** __________________________________________________^
+*** ___________________________________________________^
+*** ERROR #A9 IN 9 (Lib\UART.asm, LINE 9): SYNTAX ERROR
+*** ERROR #A9 IN 9 (Lib\UART.asm, LINE 9): SYNTAX ERROR
+*** ERROR #A3 IN 9 (Lib\UART.asm, LINE 9): ILLEGAL CHARACTER
+*** ERROR #A3 IN 9 (Lib\UART.asm, LINE 9): ILLEGAL CHARACTER
+*** ERROR #A3 IN 9 (Lib\UART.asm, LINE 9): ILLEGAL CHARACTER
+*** MORE ERRORS DETECTED, NOT REPORTED0000                  10             MOV TH1,#0FFH £»¼ÆÊÆ÷³õÊ¼ÖµÉèÖÃ
+*** _______________________________________________^
+*** ________________________________________________^
+*** _________________________________________________^
+*** __________________________________________________^
+*** ___________________________________________________^
+*** ERROR #A9 IN 10 (Lib\UART.asm, LINE 10): SYNTAX ERROR
+*** ERROR #A9 IN 10 (Lib\UART.asm, LINE 10): SYNTAX ERROR
+*** ERROR #A3 IN 10 (Lib\UART.asm, LINE 10): ILLEGAL CHARACTER
+*** ERROR #A3 IN 10 (Lib\UART.asm, LINE 10): ILLEGAL CHARACTER
+*** ERROR #A3 IN 10 (Lib\UART.asm, LINE 10): ILLEGAL CHARACTER
+*** MORE ERRORS DETECTED, NOT REPORTED0000 758BFF           11             MOV TL1,#0FFH
+0003                  12             SETB ES £»´ò¿ª½ÓÊÕÖÐ¶Ï
+*** _________________________________________^
+A51 MACRO ASSEMBLER  UART                                                                 07/31/2022 21:21:45 PAGE     2
+
+*** __________________________________________^
+*** ___________________________________________^
+*** ____________________________________________^
+*** _____________________________________________^
+*** ERROR #A9 IN 12 (Lib\UART.asm, LINE 12): SYNTAX ERROR
+*** ERROR #A9 IN 12 (Lib\UART.asm, LINE 12): SYNTAX ERROR
+*** ERROR #A9 IN 12 (Lib\UART.asm, LINE 12): SYNTAX ERROR
+*** ERROR #A3 IN 12 (Lib\UART.asm, LINE 12): ILLEGAL CHARACTER
+*** ERROR #A3 IN 12 (Lib\UART.asm, LINE 12): ILLEGAL CHARACTER
+*** MORE ERRORS DETECTED, NOT REPORTED0003                  13             SETB EA £»´ò¿ª×ÜÖÐ¶Ï
+*** _________________________________________^
+*** __________________________________________^
+*** ___________________________________________^
+*** ____________________________________________^
+*** _____________________________________________^
+*** ERROR #A9 IN 13 (Lib\UART.asm, LINE 13): SYNTAX ERROR
+*** ERROR #A9 IN 13 (Lib\UART.asm, LINE 13): SYNTAX ERROR
+*** ERROR #A9 IN 13 (Lib\UART.asm, LINE 13): SYNTAX ERROR
+*** ERROR #A3 IN 13 (Lib\UART.asm, LINE 13): ILLEGAL CHARACTER
+*** ERROR #A3 IN 13 (Lib\UART.asm, LINE 13): ILLEGAL CHARACTER
+*** MORE ERRORS DETECTED, NOT REPORTED0003                  14             SETB TR1 £»´ò¿ª¼ÆÊÆ÷            
+*** __________________________________________^
+*** ___________________________________________^
+*** ____________________________________________^
+*** _____________________________________________^
+*** ______________________________________________^
+*** ERROR #A9 IN 14 (Lib\UART.asm, LINE 14): SYNTAX ERROR
+*** ERROR #A9 IN 14 (Lib\UART.asm, LINE 14): SYNTAX ERROR
+*** ERROR #A9 IN 14 (Lib\UART.asm, LINE 14): SYNTAX ERROR
+*** ERROR #A3 IN 14 (Lib\UART.asm, LINE 14): ILLEGAL CHARACTER
+*** ERROR #A3 IN 14 (Lib\UART.asm, LINE 14): ILLEGAL CHARACTER
+*** MORE ERRORS DETECTED, NOT REPORTED0003 22               15             RET
+                      16     
+                      17     END
+A51 MACRO ASSEMBLER  UART                                                                 07/31/2022 21:21:45 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+EA . . . . . . . .  B ADDR   00A8H.7 A   
+ES . . . . . . . .  B ADDR   00A8H.4 A   
+PCON . . . . . . .  D ADDR   0087H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TL1. . . . . . . .  D ADDR   008BH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+UART . . . . . . .  C SEG    0004H       REL=UNIT
+UART_INIT. . . . .  C ADDR   0000H   R   SEG=UART
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 101 ERROR(S)

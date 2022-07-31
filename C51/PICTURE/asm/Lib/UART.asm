@@ -1,0 +1,17 @@
+UART  SEGMENT  CODE
+RSEG  UART
+
+PUBLIC UART_INIT
+
+UART_INIT:
+	ORL TMOD,#20H ；设置计数器工作方式2
+	MOV SCON,#50H ；设置为工作方式1
+	MOV PCON,#80H ；波特率加倍
+	MOV TH1,#0FFH ；计数器初始值设置
+	MOV TL1,#0FFH
+	SETB ES ；打开接收中断
+	SETB EA ；打开总中断
+	SETB TR1 ；打开计数器		
+	RET
+
+END

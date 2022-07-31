@@ -1,0 +1,95 @@
+A51 MACRO ASSEMBLER  LCD12864                                                             07/31/2022 21:21:45 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\LCD12864.obj
+ASSEMBLER INVOKED BY: D:\keilc51\C51\BIN\A51.EXE Lib\LCD12864.asm INCDIR(.\Main;.\Lib) SET(SMALL) DEBUG PRINT(.\Listings
+                      \LCD12864.lst) OBJECT(.\Objects\LCD12864.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     LCD12864  SEGMENT  CODE
+----                   2     RSEG  LCD12864
+                       3     
+                       4     EXTRN CODE (DELAY)
+                       5             
+                       6     PUBLIC WCMD,WDAT,INIT
+                       7     
+                       8     
+  00A3                 9     RS BIT P2.3
+  00A4                10     RW BIT P2.4
+  00A5                11     EN BIT P2.5
+                      12     
+                      13     ;写入命令为A中数据
+0000                  14     WCMD: 
+0000 C2A3             15             CLR RS
+0002 C2A4             16             CLR RW
+0004 C2A5             17             CLR EN
+0006 F580             18             MOV P0,A
+0008 D2A5             19             SETB EN
+000A C2A5             20             CLR     EN
+000C 22               21             RET
+                      22     
+                      23     ;写入数据为A数据
+000D                  24     WDAT:
+000D D2A3             25             SETB RS
+000F C2A4             26             CLR RW
+0011 C2A5             27             CLR EN
+0013 F580             28             MOV P0,A
+0015 D2A5             29             SETB EN
+0017 C2A5             30             CLR EN
+0019 22               31             RET
+                      32     
+                      33     ;初始化
+001A                  34     INIT:
+001A 7434             35             MOV A,#34H
+001C 120000   F       36             CALL WCMD 
+001F 7432             37             MOV A,#50
+0021 120000   F       38             CALL DELAY
+0024 7430             39             MOV A,#30H
+0026 120000   F       40             CALL WCMD
+0029 7432             41             MOV A,#50
+002B 120000   F       42             CALL DELAY
+002E 740C             43             MOV A,#0CH
+0030 120000   F       44             CALL WCMD 
+0033 7432             45             MOV A,#50
+0035 120000   F       46             CALL DELAY
+0038 7401             47             MOV A,#01H
+003A 120000   F       48             CALL WCMD 
+003D 7432             49             MOV A,#50
+003F 120000   F       50             CALL DELAY
+                      51             
+0042 7436             52             MOV A,#36H
+0044 120000   F       53             CALL WCMD 
+0047 7432             54             MOV A,#50
+0049 120000   F       55             CALL DELAY
+004C 22               56             RET
+                      57             
+A51 MACRO ASSEMBLER  LCD12864                                                             07/31/2022 21:21:45 PAGE     2
+
+                      58     
+                      59     END
+A51 MACRO ASSEMBLER  LCD12864                                                             07/31/2022 21:21:45 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   -----       EXT
+EN . . . . . . . .  B ADDR   00A0H.5 A   
+INIT . . . . . . .  C ADDR   001AH   R   SEG=LCD12864
+LCD12864 . . . . .  C SEG    004DH       REL=UNIT
+P0 . . . . . . . .  D ADDR   0080H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+RS . . . . . . . .  B ADDR   00A0H.3 A   
+RW . . . . . . . .  B ADDR   00A0H.4 A   
+WCMD . . . . . . .  C ADDR   0000H   R   SEG=LCD12864
+WDAT . . . . . . .  C ADDR   000DH   R   SEG=LCD12864
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

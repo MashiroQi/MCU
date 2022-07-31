@@ -1,0 +1,6 @@
+".\Objects\main.obj",
+".\Objects\LCD12864.obj",
+".\Objects\UART.obj",
+".\Objects\PUB.obj" 
+TO ".\Objects\PICTURE" 
+PRINT(".\Listings\PICTURE.m51") RAMSIZE(256) 

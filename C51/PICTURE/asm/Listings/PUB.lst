@@ -1,0 +1,48 @@
+A51 MACRO ASSEMBLER  PUB                                                                  07/31/2022 21:21:45 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\PUB.obj
+ASSEMBLER INVOKED BY: D:\keilc51\C51\BIN\A51.EXE Lib\PUB.asm INCDIR(.\Main;.\Lib) SET(SMALL) DEBUG PRINT(.\Listings\PUB.
+                      lst) OBJECT(.\Objects\PUB.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     PUB  SEGMENT  CODE
+----                   2     RSEG  PUB
+                       3     
+                       4     PUBLIC DELAY
+                       5     
+                       6     ;A中数据为计数时间,占用R0,R5
+0000                   7     DELAY: 
+0000                   8                WAIT3:
+0000 78DD              9                MOV R0,#221   
+0002                  10                WAIT2:
+0002 7D64             11                MOV R5,#100
+0004                  12                WAIT1: 
+0004 DDFE             13                DJNZ R5,WAIT1
+                      14                
+0006 D8FA             15                DJNZ R0,WAIT2
+0008 14               16            DEC A
+0009 70F5             17            JNZ WAIT3        
+000B 22               18            RET              
+                      19     END
+A51 MACRO ASSEMBLER  PUB                                                                  07/31/2022 21:21:45 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0000H   R   SEG=PUB
+PUB. . . . . . . .  C SEG    000CH       REL=UNIT
+WAIT1. . . . . . .  C ADDR   0004H   R   SEG=PUB
+WAIT2. . . . . . .  C ADDR   0002H   R   SEG=PUB
+WAIT3. . . . . . .  C ADDR   0000H   R   SEG=PUB
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
