@@ -16,6 +16,9 @@
         "vector": "cpp",
         "string_view": "cpp",
         "initializer_list": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "wificlient.h": "c",
+        "client.h": "c",
+        "ipaddress.h": "c"
     }
 }
