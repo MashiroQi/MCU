@@ -1,0 +1,21 @@
+{
+    "window.zoomLevel": 0,
+    "terminal.integrated.inheritEnv": false,
+    "task.autoDetect": "off",
+    "C_Cpp.updateChannel": "Insiders",
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "arduino.additionalUrls": "",
+    "workbench.colorTheme": "Moonlight",
+    "files.associations": {
+        "array": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "ranges": "cpp"
+    }
+}
