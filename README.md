@@ -1,9 +1,8 @@
 # 单片机学习记录
->keil5 + vscode
-
->使用C语言和汇编语言实现
 
 ## C51
+>keil5 + vscode
+>使用C语言和汇编语言实现
 >[笔记](./C51/C51.md)
 ### 程序
 #### 汇编程序
@@ -15,7 +14,16 @@
 - [LED](./C51/LED/)
 - [LCD12864播放视频(串口通信)](./C51/PICTURE/c/badapple.uvproj)
 
+## STM32
+>keil5 + vscode
+>使用C语言实现
+### 笔记
+> [笔记](./STM32/stm32.md)
+### LED
+- [](./STM32/LED/led.uvoptx)
+
 ## ESP8266
+>arduino + vscode
 ### 笔记
 >[笔记](./ESP8266/ESP8266.md)
 ### 程序
