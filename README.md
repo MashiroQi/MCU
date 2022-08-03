@@ -24,7 +24,7 @@
 - [LED](./STM32/LED/led.uvoptx)
 
 ## ESP8266
->arduino + vscode
+>arduino + vscode C/C++语言实现
 ### 笔记
 >[笔记](./ESP8266/ESP8266.md)
 ### 程序
