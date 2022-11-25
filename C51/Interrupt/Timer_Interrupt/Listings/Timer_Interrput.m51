@@ -1,0 +1,119 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/24/2022  20:30:14  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEILC51\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\Timer_Interrput PRINT (.\Listings\Timer_Interrput.m51) RAMSI
+>> ZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  D:\KEILC51\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEILC51\C51\LIB\C51S.LIB (?C?UIDIV)
+  D:\KEILC51\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\Timer_Interrput (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?MAIN
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     07F2H                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     0055H     UNIT         ?C?LIB_CODE
+            CODE    08E1H     0042H     UNIT         ?PR?TIMER_INTRRUPT?MAIN
+            CODE    0923H     0010H     UNIT         ?PR?TIMER_INTERRPUT_INIT?MAIN
+            CODE    0933H     0005H     UNIT         ?PR?MAIN?MAIN
+            CODE    0938H     0005H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Timer_Interrput (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?TIMER_INTERRPUT_INIT?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Timer_Interrput (MAIN)
+
+  VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/24/2022  20:30:14  PAGE 2
+
+
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  B:00A0H.0       PUBLIC        P2_0
+  C:0933H         PUBLIC        main
+  D:0008H         PUBLIC        count
+  C:0923H         PUBLIC        Timer_Interrput_Init
+  D:0089H         PUBLIC        TMOD
+  B:00A8H.1       PUBLIC        ET0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  C:08E1H         PUBLIC        Timer_Intrrupt
+  B:0088H.4       PUBLIC        TR0
+  -------         PROC          MAIN
+  C:0933H         LINE#         4
+  C:0933H         LINE#         5
+  C:0933H         LINE#         6
+  C:0936H         LINE#         7
+  -------         ENDPROC       MAIN
+  -------         PROC          TIMER_INTERRPUT_INIT
+  C:0923H         LINE#         11
+  C:0923H         LINE#         12
+  C:0923H         LINE#         13
+  C:0926H         LINE#         14
+  C:0929H         LINE#         15
+  C:092CH         LINE#         16
+  C:092EH         LINE#         17
+  C:0930H         LINE#         18
+  C:0932H         LINE#         19
+  -------         ENDPROC       TIMER_INTERRPUT_INIT
+  -------         PROC          TIMER_INTRRUPT
+  C:08E1H         LINE#         20
+  C:08F4H         LINE#         22
+  C:08F7H         LINE#         23
+  C:08FAH         LINE#         24
+  C:0902H         LINE#         25
+  C:0910H         LINE#         26
+  C:0910H         LINE#         27
+  C:0912H         LINE#         28
+  C:0912H         LINE#         29
+  -------         ENDPROC       TIMER_INTRRUPT
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?UIDIV
+  C:088CH         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 005EH BYTE ( 4%) *
+******************************************************************************
+
+Program Size: data=11.0 xdata=0 code=323
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

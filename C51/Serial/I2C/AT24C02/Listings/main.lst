@@ -1,0 +1,218 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              11/24/2022 23:31:38 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\keilc51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REG52.H>
+   2          #include "stdio.h"
+   3          sbit SCL = P2 ^ 1;
+   4          sbit SDA = P2 ^ 0;
+   5          void delay_ms(unsigned int ms);
+   6          void Serial_init();
+   7          unsigned char IIC_Read_Data(unsigned char addr);
+   8          void IIC_Write_Data(unsigned char addr, unsigned char dat);
+   9          void main()
+  10          {
+  11   1          unsigned char temp = 0;
+  12   1          Serial_init();
+  13   1          IIC_Write_Data(0, 0x0f);
+  14   1          delay_ms(10);
+  15   1          temp = IIC_Read_Data(0);
+  16   1      
+  17   1          printf("%d\n", temp);
+  18   1          IIC_Write_Data(1, 0xff);
+  19   1          delay_ms(10);
+  20   1          temp = IIC_Read_Data(1);
+  21   1          printf("%d\n", temp);
+  22   1          IIC_Write_Data(2, 0x0f);
+  23   1          temp = IIC_Read_Data(2);
+  24   1          printf("%d\n", temp);
+  25   1          temp = IIC_Read_Data(3);
+  26   1          IIC_Write_Data(4, 0x0f);
+  27   1          printf("%d\n", temp);
+  28   1          temp = IIC_Read_Data(4);
+  29   1          printf("%d\n", temp);
+  30   1          while (1)
+  31   1          {
+  32   2          }
+  33   1      }
+  34          void delay(unsigned int x)
+  35          {
+  36   1          while (x--)
+  37   1              ;
+  38   1      }
+  39          void delay_ms(unsigned int ms)
+  40          {
+  41   1          unsigned int i, j;
+  42   1          for (i = ms; i > 0; i--)
+  43   1              for (j = 110; j > 0; j--)
+  44   1                  ;
+  45   1      }
+  46          void IIC_Start()
+  47          {
+  48   1          SCL = 1;
+  49   1          SDA = 1;
+  50   1          delay(1);
+  51   1          SDA = 0;
+  52   1          delay(1);
+  53   1          SCL = 0;
+  54   1      }
+C51 COMPILER V9.60.0.0   MAIN                                                              11/24/2022 23:31:38 PAGE 2   
+
+  55          void IIC_Stop()
+  56          {
+  57   1          SCL = 1;
+  58   1          SDA = 0;
+  59   1          delay(1);
+  60   1          SDA = 1;
+  61   1          delay(1);
+  62   1      }
+  63          
+  64          void IIC_Ask()
+  65          {
+  66   1          SCL = 0;
+  67   1          SDA = 0;
+  68   1          delay(1);
+  69   1          SCL = 1;
+  70   1          delay(1);
+  71   1          SCL = 0;
+  72   1      }
+  73          void IIC_NoAsk()
+  74          {
+  75   1          SCL = 0;
+  76   1          SDA = 1;
+  77   1          delay(1);
+  78   1          SCL = 1;
+  79   1          delay(1);
+  80   1          SCL = 0;
+  81   1      }
+  82          
+  83          unsigned char IIC_Wait_Ack()
+  84          {
+  85   1          unsigned char time = 0;
+  86   1          SCL = 1;
+  87   1          delay(1);
+  88   1          while (SDA)
+  89   1          {
+  90   2              time++;
+  91   2              if (time > 100)
+  92   2              {
+  93   3                  IIC_Stop();
+  94   3                  return 1;
+  95   3              }
+  96   2          }
+  97   1          SCL = 0;
+  98   1          return 0;
+  99   1      }
+ 100          
+ 101          void IIC_WriteByte(unsigned char dat)
+ 102          {
+ 103   1          int count = 0;
+ 104   1          SCL = 0;
+ 105   1          for (count = 0; count < 8; count++)
+ 106   1          {
+ 107   2              if ((dat & 0x80) > 0)
+ 108   2              {
+ 109   3                  SDA = 1;
+ 110   3              }
+ 111   2              else
+ 112   2              {
+ 113   3                  SDA = 0;
+ 114   3              }
+ 115   2              dat <<= 1;
+ 116   2              delay(1);
+C51 COMPILER V9.60.0.0   MAIN                                                              11/24/2022 23:31:38 PAGE 3   
+
+ 117   2              SCL = 1;
+ 118   2              delay(1);
+ 119   2              SCL = 0;
+ 120   2              delay(1);
+ 121   2          }
+ 122   1      }
+ 123          unsigned char IIC_ReadByte(unsigned char ack)
+ 124          {
+ 125   1          unsigned char dat = 0;
+ 126   1          unsigned char count = 0;
+ 127   1          for (count = 0; count < 8; count++)
+ 128   1          {
+ 129   2              SCL = 0;
+ 130   2              delay(1);
+ 131   2              SCL = 1;
+ 132   2              dat <<= 1;
+ 133   2              if (SDA)
+ 134   2              {
+ 135   3                  dat += 1;
+ 136   3              }
+ 137   2              delay(1);
+ 138   2          }
+ 139   1          if (ack)
+ 140   1          {
+ 141   2              IIC_Ask();
+ 142   2          }
+ 143   1          else
+ 144   1          {
+ 145   2              IIC_NoAsk();
+ 146   2          }
+ 147   1          return dat;
+ 148   1      }
+ 149          
+ 150          void IIC_Write_Data(unsigned char addr, unsigned char dat)
+ 151          {
+ 152   1          IIC_Start();
+ 153   1          IIC_WriteByte(0xa0); // 器件地址
+ 154   1          IIC_Wait_Ack();
+ 155   1          IIC_WriteByte(addr); //
+ 156   1          IIC_Wait_Ack();
+ 157   1          IIC_WriteByte(dat); //
+ 158   1          IIC_Wait_Ack();
+ 159   1          IIC_Stop();
+ 160   1          delay_ms(10);
+ 161   1      }
+ 162          unsigned char IIC_Read_Data(unsigned char addr)
+ 163          {
+ 164   1          unsigned char dat = 0;
+ 165   1          IIC_Start();
+ 166   1          IIC_WriteByte(0xa0); // 器件地址
+ 167   1          IIC_Wait_Ack();
+ 168   1          IIC_WriteByte(addr);
+ 169   1          IIC_Wait_Ack();
+ 170   1          IIC_Start();
+ 171   1          IIC_WriteByte(0xa1);
+ 172   1          IIC_Wait_Ack();
+ 173   1          dat = IIC_ReadByte(0);
+ 174   1          IIC_Stop();
+ 175   1          return dat;
+ 176   1      }
+ 177          void Serial_init()
+ 178          {
+C51 COMPILER V9.60.0.0   MAIN                                                              11/24/2022 23:31:38 PAGE 4   
+
+ 179   1          TMOD |= 0X20;
+ 180   1          TH1 = 0Xfd;
+ 181   1          TL1 = 0Xfd; // 设置波特率9600
+ 182   1          TR1 = 1;    // 开定时器1中断
+ 183   1          SM0 = 0;    // 工作方式1
+ 184   1          SM1 = 1;
+ 185   1          ES = 1; // 开始串口中断
+ 186   1          EA = 1; // 开总中断
+ 187   1          TI = 1;
+ 188   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    483    ----
+   CONSTANT SIZE    =      4    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

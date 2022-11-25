@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              07/31/2022 20:10:49 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              10/25/2022 23:01:17 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -8,62 +8,68 @@ COMPILER INVOKED BY: D:\keilc51\C51\BIN\C51.EXE User\main.c OPTIMIZE(8,SPEED) BR
 
 line level    source
 
-   1          #include "public.h"
-   2          #include "LCD12864.h"
-   3          #include "serial.h"
-   4          
-   5          static uchar row=0;
-   6          static uchar col=0;
-   7          void main()
-   8          {
-   9   1        lcd_init();
-  10   1      
-  11   1        UartInit();
-  12   1        lcd_wcmd(0x36);
-  13   1        
-  14   1        lcd_wcmd(0x80);
-  15   1        lcd_wcmd(0x80);
-  16   1        while(1);
-  17   1      
-  18   1      }
-  19          
-  20          
-  21          void uart() interrupt 4 //串口通信中断函数
-  22          {
+   1          /*
+   2            作者：MashiroQi
+   3            配合Python脚本使用
+   4            还不是很完善
+   5            之后会继续更新
+   6          */
+   7          #include "public.h"
+   8          #include "LCD12864.h"
+   9          #include "serial.h"
+  10          
+  11          static uchar row=0;
+  12          static uchar col=0;
+  13          void main()
+  14          {
+  15   1        lcd_init();
+  16   1      
+  17   1        UartInit();
+  18   1        lcd_wcmd(0x36);
+  19   1        
+  20   1        lcd_wcmd(0x80);
+  21   1        lcd_wcmd(0x80);
+  22   1        while(1);
   23   1      
-  24   1          
-  25   1          uchar rec_data;
-  26   1          rec_data=SBUF;  //存储接收到的数据
-  27   1          RI = 0;     //清除接收中断标志位
-  28   1          if(row==64)
-  29   1          {
-  30   2            row=0;
-  31   2            lcd_wcmd(0x36);
-  32   2          }
-  33   1          if(col ==16)              
-  34   1          {
-  35   2            col=0;
-  36   2            row++;
-  37   2            lcd_wcmd(0x80 + ((row / 32) ? (row - 32) : row));
-  38   2            lcd_wcmd((row / 32) ? 0x88 : 0x80);   
-  39   2          }
-  40   1          col++;
-  41   1          lcd_wdat(rec_data);
-  42   1      
-  43   1          /*
-  44   1          SBUF=rec_data;  //将接收到的数据放入到发送寄存器
-  45   1          while(!TI);   //等待发送数据完成
-  46   1          TI=0;     //清除发送完成标志位
-  47   1          */
-  48   1      }
-  49          
+  24   1      }
+  25          
+  26          
+  27          void uart() interrupt 4 //串口通信中断函数
+  28          {
+  29   1      
+  30   1          
+  31   1          uchar rec_data;
+  32   1          rec_data=SBUF;  //存储接收到的数据
+  33   1          RI = 0;     //清除接收中断标志位
+  34   1          if(row==64)
+  35   1          {
+  36   2            row=0;
+  37   2            lcd_wcmd(0x36);
+  38   2          }
+  39   1          if(col ==16)              
+  40   1          {
+  41   2            col=0;
+  42   2            row++;
+  43   2            lcd_wcmd(0x80 + ((row / 32) ? (row - 32) : row));
+  44   2            lcd_wcmd((row / 32) ? 0x88 : 0x80);   
+  45   2          }
+  46   1          col++;
+  47   1          lcd_wdat(rec_data);
+  48   1      
+  49   1          /*
+  50   1          SBUF=rec_data;  //将接收到的数据放入到发送寄存器
+  51   1          while(!TI);   //等待发送数据完成
+  52   1          TI=0;     //清除发送完成标志位
+  53   1          */
+  54   1      }
+C51 COMPILER V9.60.0.0   MAIN                                                              10/25/2022 23:01:17 PAGE 2   
+
+  55          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    633    ----
+   CODE SIZE        =    635    ----
    CONSTANT SIZE    =   ----    ----
-C51 COMPILER V9.60.0.0   MAIN                                                              07/31/2022 20:10:49 PAGE 2   
-
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =      2      22

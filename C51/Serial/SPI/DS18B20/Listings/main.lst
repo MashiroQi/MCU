@@ -1,0 +1,180 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              11/25/2022 00:00:55 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\keilc51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include <stdio.h>
+   3          #include "intrins.h"
+   4          sbit SPI_Port = P3 ^ 7;
+   5          float Read_Temperture();
+   6          void delay(unsigned int x);
+   7          unsigned char Init();
+   8          void Serial_init()
+   9          {
+  10   1          TMOD |= 0X20;
+  11   1          TH1 = 0Xfd;
+  12   1          TL1 = 0Xfd; // 设置波特率9600
+  13   1          TR1 = 1;    // 开定时器1中断
+  14   1          SM0 = 0;    // 工作方式1
+  15   1          SM1 = 1;
+  16   1          ES = 1; // 开始串口中断
+  17   1          EA = 1; // 开总中断
+  18   1          TI = 1;
+  19   1      }
+  20          
+  21          int main() // 主函数
+  22          {
+  23   1          Serial_init(); // 串口初始化
+  24   1          Init();
+  25   1          while (1)
+  26   1          {
+  27   2              printf("%f\n", Read_Temperture());
+  28   2              delay(1000);
+  29   2          }
+  30   1      }
+  31          void delay(unsigned int x)
+  32          {
+  33   1          while (x--)
+  34   1              ;
+  35   1      }
+  36          void Reset()
+  37          {
+  38   1          SPI_Port = 0;
+  39   1          delay(75);
+  40   1          SPI_Port = 1;
+  41   1          delay(2);
+  42   1      }
+  43          unsigned char Check()
+  44          {
+  45   1          unsigned char time = 0;
+  46   1          while (SPI_Port && time < 20)
+  47   1          {
+  48   2              time++;
+  49   2              delay(1);
+  50   2          }
+  51   1          if (time >= 20)
+  52   1              return 1;
+  53   1          else
+  54   1              time = 0;
+C51 COMPILER V9.60.0.0   MAIN                                                              11/25/2022 00:00:55 PAGE 2   
+
+  55   1          while ((!SPI_Port) && time < 20)
+  56   1          {
+  57   2              time++;
+  58   2              delay(1);
+  59   2          }
+  60   1          if (time >= 20)
+  61   1              return 1;
+  62   1          return 0;
+  63   1      }
+  64          
+  65          unsigned char Read_Bit()
+  66          {
+  67   1          unsigned char dat = 0;
+  68   1          SPI_Port = 0;
+  69   1          _nop_();
+  70   1          _nop_();
+  71   1          SPI_Port = 1;
+  72   1          _nop_();
+  73   1          _nop_();
+  74   1          if (SPI_Port)
+  75   1              dat = 1;
+  76   1          else
+  77   1              dat = 0;
+  78   1          delay(5);
+  79   1          return dat;
+  80   1      }
+  81          
+  82          unsigned char Read_byte()
+  83          {
+  84   1          unsigned char i = 0, dat = 0, temp = 0;
+  85   1          for (i = 0; i < 8; i++)
+  86   1          {
+  87   2              temp = Read_Bit();
+  88   2              dat = (temp << 7) | (dat >> 1);
+  89   2          }
+  90   1          return dat;
+  91   1      }
+  92          void Write_Byte(unsigned char dat)
+  93          {
+  94   1          unsigned char i = 0, temp = 0;
+  95   1          for (i = 0; i < 8; i++)
+  96   1          {
+  97   2              temp = dat & 0x01;
+  98   2              dat >>= 1;
+  99   2              if (temp)
+ 100   2              {
+ 101   3                  SPI_Port = 0;
+ 102   3                  _nop_();
+ 103   3                  _nop_();
+ 104   3                  SPI_Port = 1;
+ 105   3                  delay(6);
+ 106   3              }
+ 107   2              else
+ 108   2              {
+ 109   3                  SPI_Port = 0;
+ 110   3                  delay(6);
+ 111   3                  SPI_Port = 1;
+ 112   3                  _nop_();
+ 113   3                  _nop_();
+ 114   3              }
+ 115   2          }
+ 116   1      }
+C51 COMPILER V9.60.0.0   MAIN                                                              11/25/2022 00:00:55 PAGE 3   
+
+ 117          void Start()
+ 118          {
+ 119   1          Reset();
+ 120   1          Check();
+ 121   1          Write_Byte(0xcc);
+ 122   1          Write_Byte(0x44);
+ 123   1      }
+ 124          unsigned char Init()
+ 125          {
+ 126   1          Reset();
+ 127   1          return Check();
+ 128   1      }
+ 129          float Read_Temperture()
+ 130          {
+ 131   1          float temp;
+ 132   1          unsigned char datH = 0, datL = 0;
+ 133   1          unsigned int value = 0;
+ 134   1          Start();
+ 135   1          Reset();
+ 136   1          Check();
+ 137   1          Write_Byte(0xcc);
+ 138   1          Write_Byte(0xbe);
+ 139   1          datL = Read_byte();
+ 140   1          datH = Read_byte();
+ 141   1          value = (datH << 8) + datL;
+ 142   1          if ((value & 0xf800) == 0xf800)
+ 143   1          {
+ 144   2              value = (~value) + 1;
+ 145   2              temp = value * (-0.0625);
+ 146   2          }
+ 147   1          else
+ 148   1          {
+ 149   2              temp = value * 0.0625;
+ 150   2          }
+ 151   1          return temp;
+ 152   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    421    ----
+   CONSTANT SIZE    =      4    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

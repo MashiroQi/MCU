@@ -1,0 +1,15 @@
+Build target 'Target 1'
+compiling main.c...
+main.c(173): warning C173: missing return-expression
+main.c(173): warning C290: missing return value
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALPUSHSEND?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?MAIN
+
+Program Size: data=38.1 xdata=0 code=1514
+creating hex file from ".\Objects\MPU6050"...
+".\Objects\MPU6050" - 0 Error(s), 4 Warning(s).
+Build Time Elapsed:  00:00:00
