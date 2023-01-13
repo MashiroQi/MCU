@@ -1,0 +1,82 @@
+C51 COMPILER V9.59.0.0   MAIN_                                                             12/11/2022 11:48:03 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN_
+OBJECT MODULE PLACED IN .\Objects\main..obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main..c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\mai
+                    -n..lst) TABS(2) OBJECT(.\Objects\main..obj)
+
+line level    source
+
+   1          #include <REG52.H>
+   2          #include "stdio.h"
+   3          
+   4          #define FOSC 18432000L
+   5          typedef unsigned char BYTE;
+   6          typedef unsigned int WORD;
+   7          sfr CCON = 0xD8;
+   8          sbit CCF0 = CCON ^ 0;
+   9          sbit CCF1 = CCON ^ 1;
+  10          sbit CR = CCON ^ 6;
+  11          sbit CF = CCON ^ 7;
+  12          sfr CMOD = 0xD9;
+  13          sfr CL = 0xE9;
+  14          sfr CH = 0xF9;
+  15          sfr CCAPM0 = 0xDA;
+  16          sfr CCAP0L = 0xEA;
+  17          sfr CCAP0H = 0xFA;
+  18          sfr CCAPM1 = 0xDB;
+  19          sfr CCAP1L = 0xEB;
+  20          sfr CCAP1H = 0xFB;
+  21          sfr PCAPWM0 = 0xf2;
+  22          sfr PCAPWM1 = 0xf3;
+  23          void PWM_Init()
+  24          {
+  25   1          CCON = 0;
+  26   1          CL = 0;
+  27   1          CH = 0;
+  28   1          CMOD = 0x02;
+  29   1          CCAP0H = CCAP0L = 0x80;
+  30   1          CCAPM0 = 0x42;
+  31   1          CCAP1H = CCAP1L = 0xff;
+  32   1          PCAPWM1 = 0x03;
+  33   1          CCAPM1 = 0x42;
+  34   1          CR = 1;
+  35   1      }
+  36          
+  37          void Serial_init()
+  38          {
+  39   1          TMOD |= 0X20;
+  40   1          TH1 = 0Xfd;
+  41   1          TL1 = 0Xfd; // 设置波特率9600
+  42   1          TR1 = 1;    // 开定时器1中断
+  43   1          SM0 = 0;    // 工作方式1
+  44   1          SM1 = 1;
+  45   1          ES = 1; // 开始串口中断
+  46   1          EA = 1; // 开总中断
+  47   1          TI = 1;
+  48   1      }
+  49          
+  50          void main()
+  51          {
+  52   1          Serial_init();
+  53   1          PWM_Init();
+  54   1          while (1)
+C51 COMPILER V9.59.0.0   MAIN_                                                             12/11/2022 11:48:03 PAGE 2   
+
+  55   1              ;
+  56   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     64    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,205 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/29/2022  12:27:59  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEILC51\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\Servo PRINT (.\Listings\Servo.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL WITH FLOATING POINT ARITHMETIC
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  D:\KEILC51\C51\LIB\C51FPS.LIB (?C?FPADD)
+  D:\KEILC51\C51\LIB\C51FPS.LIB (?C?FPDIV)
+  D:\KEILC51\C51\LIB\C51FPS.LIB (?C?FCAST)
+  D:\KEILC51\C51\LIB\C51FPS.LIB (?C?CASTF)
+  D:\KEILC51\C51\LIB\C51FPS.LIB (?C?FPGETOPN)
+  D:\KEILC51\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEILC51\C51\LIB\C51S.LIB (?C?IMUL)
+  D:\KEILC51\C51\LIB\C51S.LIB (?C?LNEG)
+
+
+LINK MAP OF MODULE:  .\Objects\Servo (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0005H     UNIT         ?DT?MAIN
+            DATA    000DH     0002H     UNIT         _DATA_GROUP_
+            IDATA   000FH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0277H     UNIT         ?C?LIB_CODE
+            CODE    0A77H     003BH     UNIT         ?PR?MAIN?MAIN
+            CODE    0AB2H     0036H     UNIT         ?PR?_SERVO_PWM?MAIN
+            CODE    0AE8H     001FH     UNIT         ?PR?_DELAY_50MS?MAIN
+            CODE    0B07H     001FH     UNIT         ?PR?_DELAY_100US?MAIN
+            CODE    0B26H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Servo (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  000DH    0002H
+  +--> ?PR?_SERVO_PWM?MAIN
+  +--> ?PR?_DELAY_50MS?MAIN
+
+?PR?_SERVO_PWM?MAIN            -----    -----
+  +--> ?PR?_DELAY_100US?MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/29/2022  12:27:59  PAGE 2
+
+
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Servo (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0A77H         PUBLIC        main
+  D:0008H         PUBLIC        count
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  C:0AE8H         PUBLIC        _delay_50ms
+  B:0088H.5       PUBLIC        TF0
+  B:0088H.7       PUBLIC        TF1
+  D:008CH         PUBLIC        TH0
+  D:008DH         PUBLIC        TH1
+  D:0009H         PUBLIC        jd
+  D:008AH         PUBLIC        TL0
+  D:008BH         PUBLIC        TL1
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  D:000AH         PUBLIC        ms
+  C:0AB2H         PUBLIC        _Servo_PWM
+  D:00C8H         PUBLIC        T2CON
+  D:000BH         PUBLIC        i
+  D:000CH         PUBLIC        j
+  C:0B07H         PUBLIC        _delay_100us
+  B:00A0H.7       PUBLIC        PWM
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_50MS
+  D:0006H         SYMBOL        x
+  C:0AE8H         LINE#         8
+  C:0AE8H         LINE#         9
+  C:0AE8H         LINE#         10
+  C:0AEBH         LINE#         11
+  C:0AEDH         LINE#         12
+  C:0AF7H         LINE#         13
+  C:0AF7H         LINE#         14
+  C:0AFAH         LINE#         15
+  C:0AFDH         LINE#         16
+  C:0B00H         LINE#         18
+  C:0B02H         LINE#         19
+  C:0B04H         LINE#         20
+  C:0B06H         LINE#         21
+  -------         ENDPROC       _DELAY_50MS
+  -------         PROC          _DELAY_100US
+  D:0006H         SYMBOL        y
+  C:0B07H         LINE#         22
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/29/2022  12:27:59  PAGE 3
+
+
+  C:0B07H         LINE#         23
+  C:0B07H         LINE#         24
+  C:0B0AH         LINE#         25
+  C:0B0CH         LINE#         26
+  C:0B16H         LINE#         27
+  C:0B16H         LINE#         28
+  C:0B19H         LINE#         29
+  C:0B1CH         LINE#         30
+  C:0B1FH         LINE#         32
+  C:0B21H         LINE#         33
+  C:0B23H         LINE#         34
+  C:0B25H         LINE#         35
+  -------         ENDPROC       _DELAY_100US
+  -------         PROC          _SERVO_PWM
+  D:0006H         SYMBOL        angle
+  -------         DO            
+  D:0007H         SYMBOL        x
+  -------         ENDDO         
+  C:0AB2H         LINE#         53
+  C:0AB2H         LINE#         54
+  C:0AB2H         LINE#         55
+  C:0AD8H         LINE#         56
+  C:0ADAH         LINE#         57
+  C:0ADFH         LINE#         58
+  C:0AE1H         LINE#         59
+  -------         ENDPROC       _SERVO_PWM
+  -------         PROC          MAIN
+  -------         DO            
+  D:000DH         SYMBOL        angle
+  -------         ENDDO         
+  C:0A77H         LINE#         61
+  C:0A77H         LINE#         62
+  C:0A77H         LINE#         64
+  C:0A77H         LINE#         65
+  C:0A77H         LINE#         66
+  C:0A7CH         LINE#         67
+  C:0A83H         LINE#         68
+  C:0A8AH         LINE#         69
+  C:0A8FH         LINE#         70
+  C:0A8FH         LINE#         71
+  C:0A96H         LINE#         72
+  C:0A9DH         LINE#         73
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?FPADD
+  C:0807H         PUBLIC        ?C?FPADD
+  C:0803H         PUBLIC        ?C?FPSUB
+  -------         ENDMOD        ?C?FPADD
+
+  -------         MODULE        ?C?FPDIV
+  C:08FBH         PUBLIC        ?C?FPDIV
+  -------         ENDMOD        ?C?FPDIV
+
+  -------         MODULE        ?C?FCAST
+  C:09A2H         PUBLIC        ?C?FCASTC
+  C:099DH         PUBLIC        ?C?FCASTI
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/29/2022  12:27:59  PAGE 4
+
+
+  C:0998H         PUBLIC        ?C?FCASTL
+  -------         ENDMOD        ?C?FCAST
+
+  -------         MODULE        ?C?CASTF
+  C:09D6H         PUBLIC        ?C?CASTF
+  -------         ENDMOD        ?C?CASTF
+
+  -------         MODULE        ?C?IMUL
+  C:0A57H         PUBLIC        ?C?IMUL
+  -------         ENDMOD        ?C?IMUL
+
+  -------         MODULE        ?C?LNEG
+  C:0A69H         PUBLIC        ?C?LNEG
+  -------         ENDMOD        ?C?LNEG
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00AFH BYTE ( 8%) *
+******************************************************************************
+
+Program Size: data=16.0 xdata=0 code=821
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

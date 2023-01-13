@@ -1,0 +1,142 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              11/29/2022 17:15:14 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\keilc51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          
+   2          #include <REG52.H>
+   3          #include <INTRINS.H>
+   4          #include <stdio.h>
+   5          typedef unsigned char uchar;
+   6          typedef unsigned int uint;
+   7          
+   8          sbit DI = P2 ^ 0;
+   9          sbit DO = P2 ^ 1;
+  10          sbit CLK = P2 ^ 2;
+  11          sbit CS = P2 ^ 3;
+  12          
+  13          void delay(uint x)
+  14          {
+  15   1          while (x--)
+  16   1              ;
+  17   1      }
+  18          void Serial_init()
+  19          {
+  20   1          TMOD |= 0X20;
+  21   1          TH1 = 0Xfd;
+  22   1          TL1 = 0Xfd; // 设置波特率9600
+  23   1          TR1 = 1;    // 开定时器1中断
+  24   1          SM0 = 0;    // 工作方式1
+  25   1          SM1 = 1;
+  26   1          ES = 1; // 开始串口中断
+  27   1          EA = 1; // 开总中断
+  28   1          TI = 1;
+  29   1      }
+  30          unsigned char Adc0832(unsigned char channel)
+  31          {
+  32   1          uchar i = 0;
+  33   1          uchar j;
+  34   1          uint dat = 0;
+  35   1          uchar ndat = 0;
+  36   1      
+  37   1          if (channel == 0)
+  38   1              channel = 2;
+  39   1          if (channel == 1)
+  40   1              channel = 3;
+  41   1          DI = 1;
+  42   1          _nop_();
+  43   1          _nop_();
+  44   1          CS = 0;
+  45   1          _nop_();
+  46   1          _nop_();
+  47   1          CLK = 1;
+  48   1          _nop_();
+  49   1          _nop_();
+  50   1          CLK = 0;
+  51   1          _nop_();
+  52   1          _nop_();
+  53   1          CLK = 1;
+  54   1          DI = channel & 0x1;
+C51 COMPILER V9.60.0.0   MAIN                                                              11/29/2022 17:15:14 PAGE 2   
+
+  55   1          _nop_();
+  56   1          _nop_();
+  57   1          CLK = 0;
+  58   1          _nop_();
+  59   1          _nop_();
+  60   1          CLK = 1;
+  61   1          DI = (channel >> 1) & 0x1;
+  62   1          _nop_();
+  63   1          _nop_();
+  64   1          CLK = 0;
+  65   1          DI = 1;
+  66   1          _nop_();
+  67   1          _nop_();
+  68   1          dat = 0;
+  69   1          for (i = 0; i < 8; i++)
+  70   1          {
+  71   2              dat |= DO;
+  72   2              CLK = 1;
+  73   2              _nop_();
+  74   2              _nop_();
+  75   2              CLK = 0;
+  76   2              _nop_();
+  77   2              _nop_();
+  78   2              dat <<= 1;
+  79   2              //        if(i==7)dat|=DO;
+  80   2          }
+  81   1          for (i = 0; i < 8; i++)
+  82   1          {
+  83   2              j = 0;
+  84   2              j = j | DO;
+  85   2              CLK = 1;
+  86   2              _nop_();
+  87   2              _nop_();
+  88   2              CLK = 0;
+  89   2              _nop_();
+  90   2              _nop_();
+  91   2              j = j << 7;
+  92   2              ndat = ndat | j;
+  93   2              if (i < 7)
+  94   2                  ndat >>= 1;
+  95   2          }
+  96   1          CS = 1;
+  97   1          CLK = 0;
+  98   1          DO = 1;
+  99   1          dat <<= 8;
+ 100   1          dat |= ndat;
+ 101   1          return (dat);
+ 102   1      }
+ 103          
+ 104          void main()
+ 105          {
+ 106   1          Serial_init();
+ 107   1          while (1)
+ 108   1          {
+ 109   2              printf("%f ", Adc0832(0) / 255.0);
+ 110   2              printf("%f\n", Adc0832(1) / 255.0);
+ 111   2              // printf("%f %f\n", Adc0832(0), Adc0832(1));
+ 112   2              delay(10000);
+ 113   2          }
+ 114   1      }
+
+
+C51 COMPILER V9.60.0.0   MAIN                                                              11/29/2022 17:15:14 PAGE 3   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    281    ----
+   CONSTANT SIZE    =      8    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

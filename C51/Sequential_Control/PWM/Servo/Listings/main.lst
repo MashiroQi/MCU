@@ -1,0 +1,101 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              11/29/2022 12:27:59 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\keilc51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include <intrins.h>
+   3          #define uchar unsigned char
+   4          #define uint unsigned int
+   5          sbit PWM = P2 ^ 7;
+   6          uchar count, jd, i, j, ms;
+   7          
+   8          void delay_50ms(uint x) // 延时50ms    11.0592晶振
+   9          {
+  10   1          TMOD = 0x01; // 开定时器0，工作方式为1
+  11   1          TR0 = 1;     // 启动定时器0；
+  12   1          while (x--)
+  13   1          {
+  14   2              TH0 = (65536 - 46080) / 256; // 定时50ms初值的高八位装入TH0
+  15   2              TL0 = (65536 - 46080) % 256; // 定时50ms初值的低八位装入TL0
+  16   2              while (!TF0)
+  17   2                  ;    // 等待，直到TF0为1
+  18   2              TF0 = 0; // 重置溢出标志位
+  19   2          }
+  20   1          TR0 = 0; // 停止定时器0；
+  21   1      }
+  22          void delay_100us(uint y) // 延时500us
+  23          {
+  24   1          TMOD = 0x10; // 开定时器1，工作方式为1
+  25   1          TR1 = 1;     // 启动定时器0；
+  26   1          while (y--)
+  27   1          {
+  28   2              TH1 = (65536 - 93) / 256; // 定时500us初值的高八位装入TH0
+  29   2              TL1 = (65536 - 93) % 256; // 定时1ms初值的低八位装入TL0
+  30   2              while (!TF1)
+  31   2                  ;    // 等待，直到TF1为1
+  32   2              TF1 = 0; // 重置溢出标志位
+  33   2          }
+  34   1          TR1 = 0; // 停止定时器1；
+  35   1      }
+  36          /*
+  37          void delay_xus(uint y, uint x) // 延时500us
+  38          {
+  39              TMOD = 0x10; // 开定时器1，工作方式为1
+  40              TR1 = 1;     // 启动定时器0；
+  41              while (y--)
+  42              {
+  43          
+  44                  TH1 = char(65536 - (11.0592 * x) / 12.0) / 256; // 定时500us初值的高八位装入TH0
+  45                  TL1 = char(65536 - (11.0592 * x) / 12.0) % 256; // 定时1ms初值的低八位装入TL0
+  46                  while (!TF1)
+  47                      ;    // 等待，直到TF1为1
+  48                  TF1 = 0; // 重置溢出标志位
+  49              }
+  50              TR1 = 0; // 停止定时器1；
+  51          }
+  52          */
+  53          void Servo_PWM(uint angle) // 0到135度
+  54          {
+C51 COMPILER V9.60.0.0   MAIN                                                              11/29/2022 12:27:59 PAGE 2   
+
+  55   1          uchar x = 5 + ((20 * angle) / (180.0));
+  56   1          PWM = 1;
+  57   1          delay_100us(x);
+  58   1          PWM = 0;
+  59   1          delay_100us(200);
+  60   1      }
+  61          void main()
+  62          {
+  63   1      
+  64   1          while (1)
+  65   1          {
+  66   2              int angle = 0;
+  67   2              Servo_PWM(angle);
+  68   2              delay_50ms(4);
+  69   2              for (angle = 0; angle < 135; angle++)
+  70   2              {
+  71   3                  Servo_PWM(angle);
+  72   3                  delay_50ms(3);
+  73   3              }
+  74   2          }
+  75   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    175    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

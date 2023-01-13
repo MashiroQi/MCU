@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "intrins.h": "c",
+    "INTRINS.H": "cpp",
+    "STDIO.H": "cpp"
+  }
+}

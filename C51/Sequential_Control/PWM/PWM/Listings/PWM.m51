@@ -1,0 +1,169 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/11/2022  11:48:04  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main..obj TO .\Objects\PWM PRINT (.\Listings\PWM.m51) RAMSI
+>> ZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\main..obj (MAIN_)
+
+
+LINK MAP OF MODULE:  .\Objects\PWM (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0022H     UNIT         ?PR?PWM_INIT?MAIN_
+            CODE    0025H     0016H     UNIT         ?PR?SERIAL_INIT?MAIN_
+            CODE    003BH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0047H     0008H     UNIT         ?PR?MAIN?MAIN_
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\PWM (?C_STARTUP)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN_
+
+?PR?MAIN?MAIN_
+  +--> ?PR?SERIAL_INIT?MAIN_
+  +--> ?PR?PWM_INIT?MAIN_
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\PWM (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:003BH         SEGMENT       ?C_C51STARTUP
+  I:0008H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/11/2022  11:48:04  PAGE 2
+
+
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:003EH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:003BH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:003BH         LINE#         133
+  C:003DH         LINE#         134
+  C:003EH         LINE#         135
+  C:003FH         LINE#         136
+  C:0041H         LINE#         185
+  C:0044H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MAIN_
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:00F9H         PUBLIC        CH
+  D:00A8H         PUBLIC        IE
+  D:00E9H         PUBLIC        CL
+  D:00FAH         PUBLIC        CCAP0H
+  D:00FBH         PUBLIC        CCAP1H
+  D:00EAH         PUBLIC        CCAP0L
+  B:00D8H.6       PUBLIC        CR
+  D:00EBH         PUBLIC        CCAP1L
+  D:00DAH         PUBLIC        CCAPM0
+  D:00DBH         PUBLIC        CCAPM1
+  B:00A8H.4       PUBLIC        ES
+  D:00B8H         PUBLIC        IP
+  B:0098H.1       PUBLIC        TI
+  D:00D9H         PUBLIC        CMOD
+  D:00D8H         PUBLIC        CCON
+  C:0047H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  D:008DH         PUBLIC        TH1
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/11/2022  11:48:04  PAGE 3
+
+
+  D:00C8H         PUBLIC        T2CON
+  C:0003H         PUBLIC        PWM_Init
+  C:0025H         PUBLIC        Serial_init
+  D:00D0H         PUBLIC        PSW
+  D:00F3H         PUBLIC        PCAPWM1
+  -------         PROC          PWM_INIT
+  C:0003H         LINE#         23
+  C:0003H         LINE#         24
+  C:0003H         LINE#         25
+  C:0006H         LINE#         26
+  C:0008H         LINE#         27
+  C:000AH         LINE#         28
+  C:000DH         LINE#         29
+  C:0013H         LINE#         30
+  C:0016H         LINE#         31
+  C:001CH         LINE#         32
+  C:001FH         LINE#         33
+  C:0022H         LINE#         34
+  C:0024H         LINE#         35
+  -------         ENDPROC       PWM_INIT
+  -------         PROC          SERIAL_INIT
+  C:0025H         LINE#         37
+  C:0025H         LINE#         38
+  C:0025H         LINE#         39
+  C:0028H         LINE#         40
+  C:002BH         LINE#         41
+  C:002EH         LINE#         42
+  C:0030H         LINE#         43
+  C:0032H         LINE#         44
+  C:0034H         LINE#         45
+  C:0036H         LINE#         46
+  C:0038H         LINE#         47
+  C:003AH         LINE#         48
+  -------         ENDPROC       SERIAL_INIT
+  -------         PROC          MAIN
+  C:0047H         LINE#         50
+  C:0047H         LINE#         51
+  C:0047H         LINE#         52
+  C:004AH         LINE#         53
+  C:004DH         LINE#         54
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN_
+
+Program Size: data=9.0 xdata=0 code=79
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
