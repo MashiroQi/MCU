@@ -1,29 +1,29 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              11/24/2022 20:17:27 PAGE 1   
+C51 COMPILER V9.59.0.0   MAIN                                                              01/13/2023 18:25:42 PAGE 1   
 
 
-C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\Objects\main.obj
-COMPILER INVOKED BY: D:\keilc51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
                     -.lst) TABS(2) OBJECT(.\Objects\main.obj)
 
 line level    source
 
    1          #include <regx52.h>
-   2          void Exterinal_Interrupt_Init();
-   3          void main()
-   4          {
-   5   1          Exterinal_Interrupt_Init();
-   6   1          while (1)
-   7   1              ;
+   2          //regx52.h中有更多定义好了P2_0可以直接使用
+   3          void Exterinal_Interrupt_Init();
+   4          void main()
+   5          {
+   6   1          Exterinal_Interrupt_Init();
+   7   1          while (1);
    8   1      }
-   9          
+   9          //外部中断设置
   10          void Exterinal_Interrupt_Init()
   11          {
   12   1          IT0 = 1; // 设置触发方式为下降沿触发
   13   1          EX0 = 1; // 开启外部中断0
   14   1          EA = 1;  // 开启总中断
   15   1      }
-  16          
+  16          //外部中断处理函数 中断号为0
   17          void Exterinal_Interrupt_Function() interrupt 0
   18          {
   19   1          P2_0 = !P2_0;
