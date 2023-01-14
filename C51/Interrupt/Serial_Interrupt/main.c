@@ -1,6 +1,7 @@
 #include <REGX51.H>
 #include "stdio.h"
 
+//串口中断初始化
 void Serial_init()
 {
     TMOD |= 0X20;
