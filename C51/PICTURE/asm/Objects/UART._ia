@@ -1,0 +1,1 @@
+"Lib\UART.asm" INCDIR(.\Main;.\Lib) SET (SMALL) DEBUG PRINT(.\Listings\UART.lst) OBJECT(.\Objects\UART.obj) EP

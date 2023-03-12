@@ -1,9 +1,9 @@
-A51 MACRO ASSEMBLER  UART                                                                 07/31/2022 21:21:45 PAGE     1
+A51 MACRO ASSEMBLER  UART                                                                 02/17/2023 23:35:33 PAGE     1
 
 
 MACRO ASSEMBLER A51 V8.2.7.0
 NO OBJECT MODULE REQUESTED
-ASSEMBLER INVOKED BY: D:\keilc51\C51\BIN\A51.EXE Lib\UART.asm INCDIR(.\Main;.\Lib) SET(SMALL) DEBUG PRINT(.\Listings\UAR
+ASSEMBLER INVOKED BY: D:\Keil_v5\C51\BIN\A51.EXE Lib\UART.asm INCDIR(.\Main;.\Lib) SET(SMALL) DEBUG PRINT(.\Listings\UAR
                       T.lst) OBJECT(.\Objects\UART.obj) EP
 
 LOC  OBJ            LINE     SOURCE
@@ -61,7 +61,7 @@ LOC  OBJ            LINE     SOURCE
 *** MORE ERRORS DETECTED, NOT REPORTED0000 758BFF           11             MOV TL1,#0FFH
 0003                  12             SETB ES ；打开接收中断
 *** _________________________________________^
-A51 MACRO ASSEMBLER  UART                                                                 07/31/2022 21:21:45 PAGE     2
+A51 MACRO ASSEMBLER  UART                                                                 02/17/2023 23:35:33 PAGE     2
 
 *** __________________________________________^
 *** ___________________________________________^
@@ -97,7 +97,7 @@ LOC  OBJ            LINE     SOURCE
 *** MORE ERRORS DETECTED, NOT REPORTED0003 22               15             RET
                       16     
                       17     END
-A51 MACRO ASSEMBLER  UART                                                                 07/31/2022 21:21:45 PAGE     3
+A51 MACRO ASSEMBLER  UART                                                                 02/17/2023 23:35:33 PAGE     3
 
 SYMBOL TABLE LISTING
 ------ ----- -------

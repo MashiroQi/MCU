@@ -1,9 +1,9 @@
-A51 MACRO ASSEMBLER  LCD12864                                                             07/31/2022 21:21:45 PAGE     1
+A51 MACRO ASSEMBLER  LCD12864                                                             02/17/2023 23:33:13 PAGE     1
 
 
 MACRO ASSEMBLER A51 V8.2.7.0
 OBJECT MODULE PLACED IN .\Objects\LCD12864.obj
-ASSEMBLER INVOKED BY: D:\keilc51\C51\BIN\A51.EXE Lib\LCD12864.asm INCDIR(.\Main;.\Lib) SET(SMALL) DEBUG PRINT(.\Listings
+ASSEMBLER INVOKED BY: D:\Keil_v5\C51\BIN\A51.EXE Lib\LCD12864.asm INCDIR(.\Main;.\Lib) SET(SMALL) DEBUG PRINT(.\Listings
                       \LCD12864.lst) OBJECT(.\Objects\LCD12864.obj) EP
 
 LOC  OBJ            LINE     SOURCE
@@ -65,11 +65,11 @@ LOC  OBJ            LINE     SOURCE
 0049 120000   F       55             CALL DELAY
 004C 22               56             RET
                       57             
-A51 MACRO ASSEMBLER  LCD12864                                                             07/31/2022 21:21:45 PAGE     2
+A51 MACRO ASSEMBLER  LCD12864                                                             02/17/2023 23:33:13 PAGE     2
 
                       58     
                       59     END
-A51 MACRO ASSEMBLER  LCD12864                                                             07/31/2022 21:21:45 PAGE     3
+A51 MACRO ASSEMBLER  LCD12864                                                             02/17/2023 23:33:13 PAGE     3
 
 SYMBOL TABLE LISTING
 ------ ----- -------

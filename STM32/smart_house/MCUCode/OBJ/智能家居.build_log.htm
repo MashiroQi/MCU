@@ -1,0 +1,74 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.27.1.0
+Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 THINKPAD, 1, LIC=50DUH-W4A48-WIB5K-ZYI8B-ZQP69-3K0GB
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.24.1
+Toolchain Path:  D:\keil32\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 5 (build 528)
+Assembler:       Armasm.exe V5.06 update 5 (build 528)
+Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
+Library Manager: ArmAr.exe V5.06 update 5 (build 528)
+Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
+CPU DLL:         SARMCM3.DLL V5.24.1
+Dialog DLL:      DARMSTM.DLL V1.68.0.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
+Dialog DLL:      TARMSTM.DLL V1.66.0.0
+ 
+<h2>Project:</h2>
+c:\Users\THINKPAD\Desktop\单片机程序\单片机程序\USER\智能家居.uvprojx
+Project File Date:  03/03/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'D:\keil32\ARM\ARMCC\Bin'
+Build target '智能家居'
+compiling page.c...
+page.h(12): warning:  #1295-D: Deprecated declaration PageSelect - give arg types
+  void PageSelect();
+page.c(59): warning:  #223-D: function "OneNet_DevLink" declared implicitly
+  	while (OneNet_DevLink()) // 接入mqtt服务器
+page.c(61): warning:  #223-D: function "OneNet_Subscribe" declared implicitly
+  	OneNet_Subscribe(topics, 1); // 订阅主题
+page.c(71): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+  		sprintf(PUB_BUF, "{\"Temp\":%d ,\"Humi\":%d,\"Smoke\":%d,\"Servo\":%d}", temp, humi, MQ2_Scan(), pwm_servo > 1000 ? 0 : 1);
+page.c(73): warning:  #223-D: function "OneNet_Publish" declared implicitly
+  		OneNet_Publish("/home/pub", PUB_BUF);
+page.c(82): warning:  #223-D: function "OneNet_RevPro" declared implicitly
+  		OneNet_RevPro(dataPtr); // 处理接收数据
+page.c(92): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  	if (strlen(weatherText) < 2)
+page.c(97): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  		root = cJSON_Parse(JSON_BUF);
+page.c(104): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+  		strcpy(weatherText, root2->valuestring);
+page.c(131): warning:  #69-D: integer conversion resulted in truncation
+  	Show_Str_Mid(45, 70, "智能家居", 24, 500);
+page.c(234): warning:  #223-D: function "mp3_vol_show" declared implicitly
+  	mp3_vol_show((vsset.mvol - 100) / 5); // 音量限制在:100~250,显示的时候,按照公式(vol-100)/5,显示,也就是0~30
+page.c: 11 warnings, 0 errors
+linking...
+Program Size: Code=114008 RO-data=21124 RW-data=640 ZI-data=1109160  
+FromELF: creating hex file...
+"..\OBJ\智能家居.axf" - 0 Error(s), 11 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.2.0.pack
+                Keil.STM32F1xx_DFP.2.2.0
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_________
+  D:\keil32\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>
