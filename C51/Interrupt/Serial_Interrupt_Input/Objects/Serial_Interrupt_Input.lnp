@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\Serial_Interrupt_Input" 
+PRINT(".\Listings\Serial_Interrupt_Input.m51") RAMSIZE(256) 

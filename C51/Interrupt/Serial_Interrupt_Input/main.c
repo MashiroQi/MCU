@@ -1,11 +1,11 @@
 #include <REGX51.H>
 #include "stdio.h"
 
-#define BUFFER_SIZE 256
-
-char BUFFER[BUFFER_SIZE]={0};
-	
-//串口中断初始化
+#define BUFFER_SIZE 64
+char buffer[BUFFER_SIZE] = {0};
+int buffer_arr;
+char ReceiveFlag;
+// 串口中断初始化
 void Serial_init()
 {
     TMOD |= 0X20;
@@ -22,18 +22,31 @@ void Serial_init()
 int main() // 主函数
 {
     Serial_init(); // 串口初始化
+    ReceiveFlag = 0;
     while (1)
     {
-        if (!P2_0)
+        if (ReceiveFlag)
         {
-            printf("P2 is %d\n", P2_0);
-        }
-        else
-        {
-            printf("P2 is High\n");
+            printf("%s", buffer);
         }
     }
 }
 void SerialInterrpt() interrupt 4
 {
+    char rec;
+    rec = SBUF;
+    buffer[buffer_arr] = rec;
+    buffer_arr++;
+    RI = 0;
+
+    if (buffer_arr == BUFFER_SIZE)
+    {
+        buffer_arr = 0; // 重新接收;
+    }
+    if (rec == '\n' || rec == '\0')
+    {
+        buffer[buffer_arr] = '\0';
+        buffer_arr = 0; // 重新接收
+        ReceiveFlag = 1;
+    }
 }

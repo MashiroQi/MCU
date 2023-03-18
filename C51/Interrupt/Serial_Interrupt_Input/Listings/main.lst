@@ -1,0 +1,77 @@
+C51 COMPILER V9.59.0.0   MAIN                                                              03/18/2023 10:33:19 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include "stdio.h"
+   3          
+   4          #define BUFFER_SIZE 64
+   5          char buffer[BUFFER_SIZE] = {0};
+   6          int buffer_arr;
+   7          char ReceiveFlag;
+   8          // 串口中断初始化
+   9          void Serial_init()
+  10          {
+  11   1          TMOD |= 0X20;
+  12   1          TH1 = 0Xfd;
+  13   1          TL1 = 0Xfd; // 设置波特率9600
+  14   1          TR1 = 1;    // 开定时器1中断
+  15   1          SM0 = 0;    // 工作方式1
+  16   1          SM1 = 1;
+  17   1          ES = 1; // 开始串口中断
+  18   1          EA = 1; // 开总中断
+  19   1          TI = 1;
+  20   1      }
+  21          
+  22          int main() // 主函数
+  23          {
+  24   1          Serial_init(); // 串口初始化
+  25   1          ReceiveFlag = 0;
+  26   1          while (1)
+  27   1          {
+  28   2              if (ReceiveFlag)
+  29   2              {
+  30   3                  printf("%s", buffer);
+  31   3              }
+  32   2          }
+  33   1      }
+  34          void SerialInterrpt() interrupt 4
+  35          {
+  36   1          char rec;
+  37   1          rec = SBUF;
+  38   1          buffer[buffer_arr] = rec;
+  39   1          buffer_arr++;
+  40   1      
+  41   1          if (buffer_arr == BUFFER_SIZE)
+  42   1          {
+  43   2              buffer_arr = 0; // 重新接收;
+  44   2          }
+  45   1          if (rec == '\n' || rec == '\0')
+  46   1          {
+  47   2              buffer[buffer_arr] = '\0';
+  48   2              buffer_arr = 0; // 重新接收
+  49   2              ReceiveFlag = 1;
+  50   2          }
+  51   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+C51 COMPILER V9.59.0.0   MAIN                                                              03/18/2023 10:33:19 PAGE 2   
+
+   CODE SIZE        =    123    ----
+   CONSTANT SIZE    =      3    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     67    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

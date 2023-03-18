@@ -1,0 +1,193 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/18/2023  10:33:20  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\Serial_Interrupt_Input PRINT (.\Listings\Serial_Interrupt_In
+>> put.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (PRINTF)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTPTR)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C?PLDIIDATA)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C?CCASE)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (PUTCHAR)
+
+
+LINK MAP OF MODULE:  .\Objects\Serial_Interrupt_Input (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0014H     UNIT         _DATA_GROUP_
+                    001CH     0004H                  *** GAP ***
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            DATA    0022H     0043H     UNIT         ?DT?MAIN
+            IDATA   0065H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     001EH     UNIT         ?PR?MAIN?MAIN
+                    0021H     0002H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     035CH     UNIT         ?PR?PRINTF?PRINTF
+            CODE    0382H     008EH     UNIT         ?C?LIB_CODE
+            CODE    0410H     008CH     UNIT         ?C_C51STARTUP
+            CODE    049CH     0047H     UNIT         ?PR?SERIALINTERRPT?MAIN
+            CODE    04E3H     0044H     UNIT         ?C_INITSEG
+            CODE    0527H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    054EH     0016H     UNIT         ?PR?SERIAL_INIT?MAIN
+            CODE    0564H     0003H     UNIT         ?CO?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Serial_Interrupt_Input (MAIN)
+
+
+SEGMENT                            BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT           START    LENGTH     START    LENGTH
+-------------------------------------------------------------------
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/18/2023  10:33:20  PAGE 2
+
+
+?C_C51STARTUP                   -----    -----      -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                   -----    -----      -----    -----
+  +--> ?PR?SERIAL_INIT?MAIN
+  +--> ?CO?MAIN
+  +--> ?PR?PRINTF?PRINTF
+
+?PR?PRINTF?PRINTF               0020H.0  0001H.1    0008H    0014H
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Serial_Interrupt_Input (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  B:00A8H.4       PUBLIC        ES
+  B:0098H.1       PUBLIC        TI
+  D:0022H         PUBLIC        buffer_arr
+  C:0003H         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0089H         PUBLIC        TMOD
+  C:049CH         PUBLIC        SerialInterrpt
+  D:0024H         PUBLIC        ReceiveFlag
+  D:008DH         PUBLIC        TH1
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  C:054EH         PUBLIC        Serial_init
+  D:0025H         PUBLIC        buffer
+  -------         PROC          SERIAL_INIT
+  C:054EH         LINE#         9
+  C:054EH         LINE#         10
+  C:054EH         LINE#         11
+  C:0551H         LINE#         12
+  C:0554H         LINE#         13
+  C:0557H         LINE#         14
+  C:0559H         LINE#         15
+  C:055BH         LINE#         16
+  C:055DH         LINE#         17
+  C:055FH         LINE#         18
+  C:0561H         LINE#         19
+  C:0563H         LINE#         20
+  -------         ENDPROC       SERIAL_INIT
+  -------         PROC          MAIN
+  C:0003H         LINE#         22
+  C:0003H         LINE#         23
+  C:0003H         LINE#         24
+  C:0006H         LINE#         25
+  C:0009H         LINE#         26
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/18/2023  10:33:20  PAGE 3
+
+
+  C:0009H         LINE#         27
+  C:0009H         LINE#         28
+  C:000DH         LINE#         29
+  C:000DH         LINE#         30
+  C:001FH         LINE#         31
+  C:001FH         LINE#         32
+  -------         ENDPROC       MAIN
+  -------         PROC          SERIALINTERRPT
+  -------         DO            
+  D:0007H         SYMBOL        rec
+  -------         ENDDO         
+  C:049CH         LINE#         34
+  C:04A7H         LINE#         37
+  C:04A9H         LINE#         38
+  C:04B0H         LINE#         39
+  C:04B8H         LINE#         41
+  C:04BEH         LINE#         42
+  C:04BEH         LINE#         43
+  C:04C2H         LINE#         44
+  C:04C2H         LINE#         45
+  C:04CAH         LINE#         46
+  C:04CAH         LINE#         47
+  C:04D1H         LINE#         48
+  C:04D7H         LINE#         49
+  C:04DAH         LINE#         50
+  C:04DAH         LINE#         51
+  -------         ENDPROC       SERIALINTERRPT
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        PRINTF
+  D:0008H         PUBLIC        ?_PRINTF517?BYTE
+  D:0008H         PUBLIC        ?_PRINTF?BYTE
+  D:0008H         PUBLIC        ?_SPRINTF517?BYTE
+  D:0008H         PUBLIC        ?_SPRINTF?BYTE
+  C:0088H         PUBLIC        _PRINTF
+  C:0088H         PUBLIC        _PRINTF517
+  C:0082H         PUBLIC        _SPRINTF
+  C:0082H         PUBLIC        _SPRINTF517
+  -------         ENDMOD        PRINTF
+
+  -------         MODULE        ?C?CLDPTR
+  C:0382H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:039BH         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:03C8H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?PLDIIDATA
+  C:03DAH         PUBLIC        ?C?PLDIIDATA
+  -------         ENDMOD        ?C?PLDIIDATA
+
+  -------         MODULE        ?C?CCASE
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/18/2023  10:33:20  PAGE 4
+
+
+  C:03EAH         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:0527H         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+Program Size: data=97.1 xdata=0 code=1381
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
