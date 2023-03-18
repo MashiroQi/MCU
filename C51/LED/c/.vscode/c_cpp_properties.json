@@ -3,8 +3,8 @@
         {
             "name": "Target 1",
             "includePath": [
-                "D:\\keilc51\\C51\\INC",
-                "d:\\gitproject\\MCU\\MCU\\C51\\LED\\c"
+                "D:\\Keil_v5\\C51\\INC",
+                "d:\\gitproject\\MCU\\C51\\LED\\c"
             ],
             "defines": [
                 "__C51__",

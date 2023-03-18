@@ -1,9 +1,8 @@
 #include <regx52.h>
 
-sbit LED=P0^0;
-
 void main()		
 {
-	LED=1;
+	P1_0=1;//设置P1_0为高电平
+	P1_1=0;//设置P1_1为低电平
 	while(1);
 }
